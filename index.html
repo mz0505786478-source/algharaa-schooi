@@ -29,4 +29,20 @@ footer{text-align:center;color:var(--muted);padding:28px 12px;font-size:13px}
 <div class="notice"><strong>تنويه:</strong> هذه نسخة واجهة أولية للعرض. تسجيل الدخول، قاعدة البيانات، وإدارة الصلاحيات تحتاج إلى إعداد خدمة خلفية آمنة قبل إدخال بيانات فعلية أو بيانات طلاب.</div>
 </main>
 <footer>© مدرسة الغراء الابتدائية والمتوسطة — بوابة الأنشطة المدرسية</footer>
-</body></html>
+
+<!-- Supabase Connection -->
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+<script>
+const SUPABASE_URL = "https://drcsjcizxzm swctmq.supabase.co";
+const SUPABASE_PUBLISHABLE_KEY = "ضع_المفتاح_العام_هنا";
+
+const supabaseClient = window.supabase.createClient(
+  SUPABASE_URL,
+  SUPABASE_PUBLISHABLE_KEY
+);
+
+console.log("تم تجهيز اتصال Supabase بنجاح");
+</script>
+</body>
+</html>
