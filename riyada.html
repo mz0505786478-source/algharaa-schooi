@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>ريادة النشاط | بوابة مدرسة الغراء</title>
+<style>
+:root{--navy:#123a52;--teal:#148b83;--gold:#d8a84e;--bg:#f3f7f8;--ink:#183342;--muted:#647985;--line:#dce6e9;--white:#fff}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font-family:Tahoma,Arial,sans-serif}
+header{background:linear-gradient(120deg,#10374e,#176b70);color:white;padding:24px clamp(16px,4vw,42px);display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap}
+header h1{font-size:clamp(22px,3vw,32px);margin:0 0 8px}header p{margin:0;color:#d7e8ea}
+.brand{display:flex;gap:12px;align-items:center}.mark{width:48px;height:48px;border-radius:14px;background:#ffffff20;border:1px solid #ffffff55;display:grid;place-items:center;font-size:24px}
+main{max-width:1200px;margin:26px auto;padding:0 16px 40px}.toolbar{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:18px}
+button,.btn{border:0;border-radius:10px;padding:11px 16px;background:var(--teal);color:white;font-weight:700;cursor:pointer;font-family:inherit}button.secondary{background:#e6eff1;color:var(--navy)}button.outline{background:white;border:1px solid var(--line);color:var(--navy)}
+.grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px}.stat,.panel,.tile{background:white;border:1px solid var(--line);border-radius:16px;padding:18px;box-shadow:0 4px 16px #173a4a08}
+.stat small{color:var(--muted)}.stat strong{display:block;font-size:28px;margin:10px 0 4px;color:var(--navy)}.stat .icon{float:left;background:#e7f4f1;color:var(--teal);padding:8px;border-radius:10px}
+.section{margin-top:22px}.section h2{font-size:19px;margin:0 0 14px}.modules{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}.tile{display:flex;align-items:flex-start;gap:14px;cursor:pointer;transition:.15s}.tile:hover{border-color:#8ac5c0;transform:translateY(-2px)}.tile .ico{background:#e9f4f3;color:#147f78;border-radius:12px;padding:12px;font-size:22px}.tile h3{margin:2px 0 8px;font-size:16px}.tile p{margin:0;color:var(--muted);font-size:13px;line-height:1.7}
+.panel{margin-top:22px}.panel-head{display:flex;justify-content:space-between;gap:10px;align-items:center;flex-wrap:wrap}.search{width:min(320px,100%);border:1px solid var(--line);border-radius:10px;padding:10px 12px;font:inherit}
+table{width:100%;border-collapse:collapse;margin-top:14px}th,td{text-align:right;padding:12px;border-bottom:1px solid var(--line);font-size:14px}th{color:var(--muted);font-weight:600;background:#f8fbfc}.status{display:inline-block;border-radius:20px;padding:5px 10px;background:#fff2d9;color:#855b0b;font-size:12px}
+.empty{text-align:center;padding:28px;color:var(--muted)}.note{border:1px solid #ead9aa;background:#fff9e9;color:#755b19;padding:13px 15px;border-radius:12px;line-height:1.8;margin-top:18px;font-size:13px}
+dialog{border:0;border-radius:18px;width:min(650px,calc(100% - 24px));padding:0;box-shadow:0 24px 90px #0003}dialog::backdrop{background:#102c3b80}.modal{padding:22px}.modal-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:18px}.modal-head h2{margin:0}.close{background:#eef3f4;color:#24424e;padding:7px 12px}
+form .fields{display:grid;grid-template-columns:1fr 1fr;gap:12px}label{display:block;font-size:13px;color:#536b76;margin-bottom:6px}input,select,textarea{width:100%;padding:11px;border:1px solid var(--line);border-radius:9px;font:inherit;background:white;color:var(--ink)}textarea{min-height:85px;resize:vertical}.wide{grid-column:1/-1}.actions{display:flex;gap:10px;justify-content:flex-start;margin-top:18px}
+#toast{position:fixed;bottom:20px;left:20px;background:#173d50;color:white;padding:12px 16px;border-radius:10px;display:none;z-index:5}
+@media(max-width:850px){.grid{grid-template-columns:repeat(2,1fr)}.modules{grid-template-columns:repeat(2,1fr)}}@media(max-width:560px){.grid,.modules{grid-template-columns:1fr}form .fields{grid-template-columns:1fr}.wide{grid-column:auto}header{align-items:flex-start}}
+</style>
+</head>
+<body>
+<header><div class="brand"><div class="mark">✦</div><div><h1>ريادة النشاط</h1><p>الرفيق الذكي لرائد النشاط · بوابة مدرسة الغراء الابتدائية والمتوسطة</p></div></div><button class="secondary" id="settingsBtn">إعدادات الربط</button></header>
+<main>
+<div class="toolbar"><div><h2 style="margin:0 0 5px">لوحة متابعة البرامج والأنشطة</h2><span style="color:var(--muted);font-size:13px">إدارة البرامج، الشواهد، المهام، وقياس الأثر من مكان واحد.</span></div><button id="addBtn">＋ إضافة نشاط</button></div>
+<div class="grid">
+<div class="stat"><span class="icon">▣</span><small>إجمالي الأنشطة</small><strong id="total">0</strong><small>البرامج المسجلة</small></div>
+<div class="stat"><span class="icon">◷</span><small>قيد التنفيذ</small><strong id="active">0</strong><small>أنشطة نشطة</small></div>
+<div class="stat"><span class="icon">✓</span><small>مكتملة</small><strong id="done">0</strong><small>أنشطة منجزة</small></div>
+<div class="stat"><span class="icon">♧</span><small>المستفيدون</small><strong id="beneficiaries">0</strong><small>إجمالي مستفيدين مدخل</small></div>
+</div>
+<section class="section"><h2>مساحات العمل</h2><div class="modules">
+<div class="tile" data-module="activities"><span class="ico">▣</span><div><h3>سجل الأنشطة</h3><p>تخطيط البرامج وتوثيق بياناتها ومتابعة حالة التنفيذ.</p></div></div>
+<div class="tile" data-module="evidence"><span class="ico">▧</span><div><h3>الشواهد والتوثيق</h3><p>ربط الصور والملفات بكل نشاط وحفظ سجل الشواهد.</p></div></div>
+<div class="tile" data-module="tasks"><span class="ico">☷</span><div><h3>المهام والتكليفات</h3><p>توزيع المهام وتحديد المسؤول والموعد المستهدف.</p></div></div>
+<div class="tile" data-module="surveys"><span class="ico">☑</span><div><h3>قياس الأثر</h3><p>إنشاء استبانات وتحليل استجابات المستفيدين.</p></div></div>
+<div class="tile" data-module="partnerships"><span class="ico">♧</span><div><h3>الشراكات المجتمعية</h3><p>توثيق الشركاء والمساهمات ومخرجات التعاون.</p></div></div>
+<div class="tile" data-module="reports"><span class="ico">▤</span><div><h3>التقارير والطباعة</h3><p>تهيئة ملخصات الأنشطة والتقارير الختامية للطباعة.</p></div></div>
+</div></section>
+<section class="panel"><div class="panel-head"><h2 style="margin:0">آخر الأنشطة</h2><input class="search" id="search" placeholder="ابحث باسم النشاط أو المجال…"></div>
+<table><thead><tr><th>اسم النشاط</th><th>المجال</th><th>الفئة المستهدفة</th><th>المستفيدون</th><th>الحالة</th></tr></thead><tbody id="activityRows"><tr><td colspan="5" class="empty">لم تُسجّل أنشطة بعد. ابدأ بإضافة نشاط جديد.</td></tr></tbody></table></section>
+<div class="note">نسخة واجهة أولية. بعد إدخال رابط Supabase الصحيح ومفتاح النشر العام وتطبيق ملف التهيئة SQL، تُفعّل عمليات الحفظ الفعلية. لا تضع مفتاح <b>service_role</b> في هذه الصفحة أو في مستودع GitHub.</div>
+</main>
+<dialog id="activityDialog"><div class="modal"><div class="modal-head"><h2>إضافة نشاط جديد</h2><button class="close" id="closeActivity">إغلاق</button></div><form id="activityForm"><div class="fields">
+<div class="wide"><label>اسم النشاط *</label><input name="title" required placeholder="مثال: أسبوع الفضاء العالمي"></div>
+<div><label>المجال</label><select name="field"><option>ثقافي</option><option>اجتماعي</option><option>علمي</option><option>وطني</option><option>صحي</option><option>تقني</option><option>تطوعي</option><option>آخر</option></select></div>
+<div><label>نوع النشاط</label><select name="activity_type"><option>برنامج</option><option>مسابقة</option><option>مبادرة</option><option>فعالية</option><option>إذاعة مدرسية</option></select></div>
+<div><label>تاريخ التنفيذ</label><input name="start_date" type="date"></div>
+<div><label>الفئة المستهدفة</label><input name="target_group" value="طلاب المدرسة"></div>
+<div><label>عدد المستفيدين</label><input name="beneficiary_count" type="number" min="0" value="0"></div>
+<div><label>مسؤول التنفيذ</label><input name="owner_name" placeholder="اسم المسؤول"></div>
+<div><label>الحالة</label><select name="status"><option value="draft">مسودة</option><option value="planned">مخطط</option><option value="in_progress">قيد التنفيذ</option><option value="completed">مكتمل</option></select></div>
+<div class="wide"><label>الهدف العام</label><textarea name="general_objective" placeholder="اكتب الهدف العام للنشاط"></textarea></div>
+<div class="wide"><label>وصف مختصر</label><textarea name="description" placeholder="وصف النشاط وآلية تنفيذه"></textarea></div>
+</div><div class="actions"><button type="submit">حفظ النشاط</button><button type="button" class="outline" id="cancelActivity">إلغاء</button></div></form></div></dialog>
+<dialog id="settingsDialog"><div class="modal"><div class="modal-head"><h2>إعدادات Supabase</h2><button class="close" id="closeSettings">إغلاق</button></div><form id="settingsForm"><div class="fields">
+<div class="wide"><label>رابط المشروع (Project URL)</label><input name="url" type="url" required placeholder="https://PROJECT_REF.supabase.co" value="https://drcsjcizxzm swctmq.supabase.co"><small style="color:#8a651a">تنبيه: الرابط المرسل يحتوي مسافة؛ تحقق من نسخه كما يظهر في إعدادات Supabase دون مسافات.</small></div>
+<div class="wide"><label>مفتاح النشر العام (Publishable / anon key)</label><input name="key" type="password" autocomplete="off" placeholder="أضف المفتاح العام هنا"></div>
+</div><div class="actions"><button type="submit">حفظ الإعدادات</button><button type="button" class="outline" id="cancelSettings">إلغاء</button></div><p style="color:var(--muted);font-size:12px;line-height:1.7">الإعدادات تُحفظ محليًا في هذا المتصفح فقط. لا تدخل مفتاحًا سريًا أو service_role.</p></form></div></dialog>
+<div id="toast"></div>
+<script>
+const $=s=>document.querySelector(s);let activities=[];let config={url:'',key:''};
+try{config={...config,...JSON.parse(localStorage.getItem('riyada_supabase_config')||'{}')}}catch(e){}
+const toast=m=>{const t=$('#toast');t.textContent=m;t.style.display='block';setTimeout(()=>t.style.display='none',2800)};
+function stats(){ $('#total').textContent=activities.length;$('#active').textContent=activities.filter(a=>a.status==='in_progress').length;$('#done').textContent=activities.filter(a=>a.status==='completed').length;$('#beneficiaries').textContent=activities.reduce((s,a)=>s+Number(a.beneficiary_count||0),0).toLocaleString('ar-SA');}
+function render(){const q=$('#search').value.trim().toLowerCase();const rows=activities.filter(a=>(a.title+' '+a.field).toLowerCase().includes(q));$('#activityRows').innerHTML=rows.length?rows.map(a=>'<tr><td><b>'+esc(a.title)+'</b></td><td>'+esc(a.field||'—')+'</td><td>'+esc(a.target_group||'—')+'</td><td>'+Number(a.beneficiary_count||0).toLocaleString('ar-SA')+'</td><td><span class="status">'+statusLabel(a.status)+'</span></td></tr>').join(''):'<tr><td colspan="5" class="empty">لا توجد نتائج مطابقة.</td></tr>';stats()}
+function esc(v){return String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
+function statusLabel(s){return ({draft:'مسودة',planned:'مخطط',in_progress:'قيد التنفيذ',completed:'مكتمل',archived:'مؤرشف'})[s]||'مسودة'}
+const ad=$('#activityDialog'),sd=$('#settingsDialog');
+$('#addBtn').onclick=()=>ad.showModal();$('#closeActivity').onclick=$('#cancelActivity').onclick=()=>ad.close();
+$('#settingsBtn').onclick=()=>{const f=$('#settingsForm');f.url.value=config.url||'https://drcsjcizxzm swctmq.supabase.co';f.key.value=config.key||'';sd.showModal()};$('#closeSettings').onclick=$('#cancelSettings').onclick=()=>sd.close();
+$('#search').oninput=render;
+$('#activityForm').onsubmit=e=>{e.preventDefault();const a=Object.fromEntries(new FormData(e.target));a.beneficiary_count=Number(a.beneficiary_count||0);activities.unshift(a);e.target.reset();ad.close();render();toast('أضيف النشاط إلى العرض التجريبي. يلزم إعداد الربط لحفظه في قاعدة البيانات.')};
+$('#settingsForm').onsubmit=e=>{e.preventDefault();const f=e.target;config={url:f.url.value.trim().replace(/\s+/g,''),key:f.key.value.trim()};localStorage.setItem('riyada_supabase_config',JSON.stringify(config));sd.close();toast('حُفظت الإعدادات محليًا. تحقق من صحة الرابط والمفتاح.')};
+document.querySelectorAll('.tile').forEach(t=>t.onclick=()=>{const n=t.dataset.module;toast(({activities:'سجل الأنشطة',evidence:'الشواهد والتوثيق',tasks:'المهام والتكليفات',surveys:'قياس الأثر',partnerships:'الشراكات المجتمعية',reports:'التقارير والطباعة'})[n]+' — مساحة قيد التجهيز.')});
+render();
+</script>
+</body></html>
