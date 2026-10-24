@@ -4,7 +4,7 @@
 create extension if not exists pgcrypto;
 
 create schema if not exists private;
-revoke all on schema private from public, anon, authenticated;
+revoke all on schema private from public, anon, authenticated;\ngrant usage on schema private to authenticated;
 
 create table if not exists public.riyada_profiles (
   user_id uuid primary key references auth.users(id) on delete cascade,
